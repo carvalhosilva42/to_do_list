@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from enum import Enum
 
 
@@ -20,6 +20,7 @@ class Tarefa(BaseModel):
 class TarefaPublic(BaseModel):
     titulo: str
     descricao: Optional[str] = None
+    model_config = ConfigDict(from_attributes=True)
 
 class TarefaList(BaseModel):
-    tarefas: list[TarefaPublic]
+    tarefas: list[Tarefa]

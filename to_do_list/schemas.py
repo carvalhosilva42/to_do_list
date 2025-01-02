@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from enum import Enum
 
 
@@ -24,3 +24,24 @@ class TarefaPublic(BaseModel):
 
 class TarefaList(BaseModel):
     tarefas: list[Tarefa]
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class Usuario(BaseModel):
+    email: EmailStr
+    senha: str
+
+class UsuarioPublic(BaseModel):
+    email: str
+    model_config = ConfigDict(from_attributes=True)
+
+class UsuarioList(BaseModel):
+    usuarios: list[Usuario]
+
+class TokenData(BaseModel):
+    username: str | None=None
+
+class Message(BaseModel):
+    message: str

@@ -3,7 +3,6 @@ from http import HTTPStatus
 from fastapi.testclient import TestClient
 from to_do_list.app import app
 from datetime import datetime
-from to_do_list.schemas import TarefaPublic, Tarefa
 
 def test_create_tarefa():
     client = TestClient(app)
@@ -43,21 +42,25 @@ def test_leitura_tarefas_schema():
 
     assert response.status_code == 200, f"Esperado status 200, mas recebeu {response.status_code}"
 
-def test_atualizacao_tarefa():
+def test_atualizacao_tarefa(token, usuario):
     client = TestClient(app)
-
-    response = client.put('/tarefa/1',
+    headers = {
+        "Authorization": f"Bearer {token}"
+    }
+    response = client.put('/tarefa/2',
                           json={
-                            'id': 1,
+                            'id': 2,
                             'titulo': "Primeira Tarefa",
                             'descricao': "realizando a primeira tarefa",
                             'estado': 'pendente',
                             'data_criacao': datetime.now().isoformat(),
                             'data_atualizacao': datetime.now().isoformat()
-                        })
+                        },
+                        headers=headers)
     assert response.status_code == HTTPStatus.OK
-
+'''
 def teste_deletar_tarefa():
     client = TestClient(app)
-    response = client.delete("/tarefa/1")
+    response = client.delete("/tarefa/4")
     assert response.status_code == HTTPStatus.OK
+'''

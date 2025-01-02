@@ -38,7 +38,11 @@ usuário para geração do token. Endpoints para usuário:
 
 (4) poetry install --no-interaction --no-ansi
 
+(5) alembic upgrade head
 
+(6) Para executar testes via pytest: task test
+
+(7) Para executar o ambiente: task run
 
 ## Informações para Executar o Ambiente em Docker:
 

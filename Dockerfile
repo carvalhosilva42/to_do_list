@@ -19,4 +19,3 @@ EXPOSE 8000
 
 # Define o comando para rodar as migrações do Alembic antes de iniciar o servidor
 CMD ["sh", "-c", "poetry run alembic upgrade head && poetry run uvicorn --host 0.0.0.0 to_do_list.app:app"]
-

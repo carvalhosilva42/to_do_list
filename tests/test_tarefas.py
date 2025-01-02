@@ -3,6 +3,8 @@ from http import HTTPStatus
 from fastapi.testclient import TestClient
 from to_do_list.app import app
 from datetime import datetime
+from fastapi_cache.backends.inmemory import InMemoryBackend
+from fastapi_cache import FastAPICache
 
 def test_create_tarefa():
     client = TestClient(app)
@@ -26,7 +28,7 @@ def test_create_tarefa():
 def test_leitura_tarefas_schema():
     # Cliente de teste
     client = TestClient(app)
-
+    FastAPICache.init(InMemoryBackend(), prefix="fastapi-cache")
     response = client.get('/tarefa/')
 
     tarefas = response.json().get('tarefas', [])

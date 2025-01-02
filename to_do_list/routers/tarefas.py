@@ -12,6 +12,8 @@ from to_do_list.security import (
     obter_usuario_atual,
     obter_senha_hash,
 )
+from fastapi_cache.decorator import cache
+
 router = APIRouter(prefix='/tarefa', tags=['tarefas'])
 
 @router.post('/', status_code = HTTPStatus.CREATED, response_model=TarefaPublic)
@@ -29,6 +31,7 @@ def adiciona_tarefa(tarefa: Tarefa, session: Session = Depends(get_session)):
     return db_tarefa
 
 @router.get('/', response_model=TarefaList)
+@cache(expire=60)
 def obter_tarefas(skip: int = 0, limit: int = 100, session: Session = Depends(get_session)):
     stmt = select(TarefaDB).offset(skip).limit(limit)
     tarefas = session.execute(stmt).scalars().all()

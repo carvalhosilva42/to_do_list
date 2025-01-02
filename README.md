@@ -32,6 +32,8 @@ usuário para geração do token. Endpoints para usuário:
 
 + git clone https://github.com/carvalhosilva42/to_do_list.git
 
++ Criar ambiente virtual
+
 + pip install poetry
 
 + poetry config installer.max-workers 10

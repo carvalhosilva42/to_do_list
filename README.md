@@ -30,19 +30,19 @@ usuário para geração do token. Endpoints para usuário:
 
 ## Informações para executar localmente a aplicação
 
-(1) git clone https://github.com/carvalhosilva42/to_do_list.git
++ git clone https://github.com/carvalhosilva42/to_do_list.git
 
-(2) pip install poetry
++ pip install poetry
 
-(3) poetry config installer.max-workers 10
++ poetry config installer.max-workers 10
 
-(4) poetry install --no-interaction --no-ansi
++ poetry install --no-interaction --no-ansi
 
-(5) alembic upgrade head
++ alembic upgrade head
 
-(6) Para executar testes via pytest: task test
++ Para executar testes via pytest: task test
 
-(7) Para executar o ambiente: task run
++ Para executar o ambiente: task run
 
 ## Informações para Executar o Ambiente em Docker:
 

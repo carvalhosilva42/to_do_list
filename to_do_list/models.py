@@ -5,12 +5,20 @@ from sqlalchemy.orm import Mapped, registry, mapped_column
 table_registry = registry()
 
 @table_registry.mapped_as_dataclass
-class Tarefa:
+class TarefaDB:
     __tablename__ = "tarefas"
 
-    id: Mapped[int] = mapped_column(init=False, primary_key= True)
+    id: Mapped[int] = mapped_column(init=False, primary_key= True, autoincrement=True)
     titulo: Mapped[str] = mapped_column(nullable=False)
     estado: Mapped[str] = mapped_column(nullable=False)
     descricao: Mapped[str] = mapped_column(nullable=True, default=None)
     data_criacao: Mapped[datetime] = mapped_column(init=False,server_default=func.now())
     data_atualizacao: Mapped[datetime] = mapped_column(init=False,server_default=func.now())
+
+@table_registry.mapped_as_dataclass
+class UsuarioDB:
+    __tablename__ = "usuarios"
+
+    id: Mapped[int] = mapped_column(init=False, primary_key= True, autoincrement=True)
+    email: Mapped[str] = mapped_column(nullable=False)
+    senha: Mapped[str] = mapped_column(nullable=False)

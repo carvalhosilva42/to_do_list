@@ -2,7 +2,8 @@ from http import HTTPStatus
 
 from fastapi.testclient import TestClient
 from to_do_list.app import app
-from datetime import datetime
+from fastapi_cache import FastAPICache
+from fastapi_cache.backends.inmemory import InMemoryBackend
 
 def test_create_usuario():
     client = TestClient(app)
@@ -22,7 +23,7 @@ def test_create_usuario():
 def test_leitura_usuarios_schema():
     # Cliente de teste
     client = TestClient(app)
-
+    FastAPICache.init(InMemoryBackend(), prefix="fastapi-cache")
     response = client.get('/tarefa/')
 
     usuarios = response.json().get('usuarios', [])
